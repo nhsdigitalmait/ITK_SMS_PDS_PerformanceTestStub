@@ -1,0 +1,27 @@
+version: '3.3'
+services:
+    smsp-performance-stub:
+        ports:
+            - '4848:4848'
+        image: nhsdigitalmait/smsp-performance-stub:20201123
+        container_name: smsp-performance-stub
+        environment:
+            - getPatientDetailsByNHSNumber_PERCENTAGE_FOUND_RESPONSE=70
+            - getPatientDetailsBySearch_PERCENTAGE_FOUND_RESPONSE=30
+            - getPatientDetailsByNHSNumber_DELAY_MS=0
+            - getPatientDetailsBySearch_DELAY_MS=0
+        restart: always
+        depends_on:
+            - nginx
+    nginx:
+        ports:
+            - '80:80'
+            - '443:443'
+        volumes:
+            - /home/riro/TKW-5.0.5/TKW/config/ITK_SMS_PDS_PerformanceTestStub/nginx-tlsma/default.conf:/etc/nginx/conf.d/default.conf
+            - /home/riro/TKW-5.0.5/TKW/config/ITK_SMS_PDS_PerformanceTestStub/certs/opentest.pem:/etc/nginx/cert/opentest.pem
+            - /home/riro/TKW-5.0.5/TKW/config/ITK_SMS_PDS_PerformanceTestStub/certs/vpn-client-1094.key:/etc/nginx/cert/vpn-client-1094.key
+            - /home/riro/TKW-5.0.5/TKW/config/ITK_SMS_PDS_PerformanceTestStub/certs/vpn-client-1094.chain:/etc/nginx/cert/vpn-client-1094.chain
+        container_name: nginx
+        hostname: nginx
+        image: nginx

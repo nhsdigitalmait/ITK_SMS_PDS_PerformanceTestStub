@@ -1,0 +1,85 @@
+#
+#=================================================================================================================================================================================================================================================
+#HEADER
+#=================================================================================================================================================================================================================================================
+#
+# Simulator rule definition file for ITK Testbench
+# PDS SMS
+# v5.2 Template
+#
+#=================================================================================================================================================================================================================================================
+#RESPONSES
+#=================================================================================================================================================================================================================================================
+#
+BEGIN RESPONSES
+getPatientDetailsByNHSNumber-v1-0Response /home/riro/TKW-5.0.5/TKW/config/ITK_SMS_PDS_PerformanceTestStub/simulator_config/response_templates/getPatientDetailsByNHSNumber_QUPA_MT000003GB01.xml 200
+getPatientDetailsByNHSNumber-v1-0Response_DEMOG-0001 /home/riro/TKW-5.0.5/TKW/config/ITK_SMS_PDS_PerformanceTestStub/simulator_config/response_templates/getPatientDetailsByNHSNumberResponse_DEMOG-0001.xml 200
+#
+getPatientDetailsBySearch-v1-0Response /home/riro/TKW-5.0.5/TKW/config/ITK_SMS_PDS_PerformanceTestStub/simulator_config/response_templates/getPatientDetailsSearch_QUPA_MT000003GB01.xml 200
+getPatientDetailsBySearch-v1-0Response_DEMOG-0001 /home/riro/TKW-5.0.5/TKW/config/ITK_SMS_PDS_PerformanceTestStub/simulator_config/response_templates/getPatientDetailsBySearchResponse_DEMOG-0001.xml 200
+#
+do_process	NONE	0
+END RESPONSES
+#
+#=================================================================================================================================================================================================================================================
+#SUBSTITUTIONS
+#=================================================================================================================================================================================================================================================
+#
+BEGIN SUBSTITUTIONS
+__MESSAGEID__	UUID
+__TIMESTAMP__	HL7datetime
+__JOBID__	UUID
+__ERRORID__	UUID
+__ERRORCODE__	Literal	1000
+__ERRORTEXT__	Literal Invalid message
+__ERRORDETAIL__	Literal	Test message rejection
+__REFTOMSGID__	Xpath	/soap:Envelope/soap:Header/wsa:MessageID
+__ORIGINAL_FROM__	Xpath	/soap:Envelope/soap:Header/wsa:From/wsa:Address
+__ORIGINAL_FAULT__	Xpath	/soap:Envelope/soap:Header/wsa:FaultTo/wsa:Address
+__ORIGINAL_REPLY_TO__	Xpath	/soap:Envelope/soap:Header/wsa:ReplyTo/wsa:Address
+__ORIGINAL_TO__	Xpath	/soap:Envelope/soap:Header/wsa:To
+__ACTION__	Xpath /soap:Envelope/soap:Header/wsa:Action
+__Fault_TO__	Literal	http://localhost/faultreport
+__REPLY_TO__	Literal	http://localhost/reply
+__TRACKINGID__	Xpath /soap:Envelope/soap:Body/itk:DistributionEnvelope/itk:header/@trackingid
+__LPAS__	Xpath //*[name()='hl7v2:MSH']/*[name()='hl7v2:MSH.3']/*[name()='hl7v2:HD.1']
+__ORG1__	Xpath //*[name()='hl7v2:MSH']/*[name()='hl7v2:MSH.4']/*[name()='hl7v2:HD.1']
+__ROUTE1__	Xpath //*[name()='hl7v2:MSH']/*[name()='hl7v2:MSH.5']/*[name()='hl7v2:HD.1']
+__ROUTE2__	Xpath //*[name()='hl7v2:MSH']/*[name()='hl7v2:MSH.6']/*[name()='hl7v2:HD.1']
+__MSH10__	Xpath //*[name()='hl7v2:MSH']/*[name()='hl7v2:MSH.10']
+__MSH11__	Xpath //*[name()='hl7v2:MSH']/*[name()='hl7v2:MSH.11']/*[name()='hl7v2:PT.1']
+__MSH12__	Xpath //*[name()='hl7v2:MSH']/*[name()='hl7v2:MSH.12']/*[name()='hl7v2:VID.1']
+__ITKVer__	Xpath //*[name()='hl7v2:MSH']/*[name()='hl7v2:MSH.21']
+__DELAY1__ Class org.warlock.tk.internalservices.rules.DelaySubstitution "getPatientDetailsByNHSNumber 0"
+__DELAY2__ Class org.warlock.tk.internalservices.rules.DelaySubstitution "getPatientDetailsBySearch 0"
+END SUBSTITUTIONS
+#
+#=================================================================================================================================================================================================================================================
+#EXPRESSIONS
+#=================================================================================================================================================================================================================================================
+#
+BEGIN EXPRESSIONS
+HPR_getPatientDetailsByNHSNumber	XpathEquals	//itk:DistributionEnvelope/itk:header/@service urn:nhs-itk:services:201005:getPatientDetailsByNHSNumber-v1-0
+HPR_getPatientDetailsBySearch		XpathEquals	//itk:DistributionEnvelope/itk:header/@service urn:nhs-itk:services:201005:getPatientDetailsBySearch-v1-0
+getPatientDetailsByNHSNumberChance							PercentageChance	100
+getPatientDetailsBySearchChance								PercentageChance	100
+END EXPRESSIONS
+#
+#=================================================================================================================================================================================================================================================
+#RULES
+#=================================================================================================================================================================================================================================================
+#
+
+BEGIN RULE
+urn:nhs-itk:services:201005:getPatientDetailsByNHSNumber-v1-0
+IF	HPR_getPatientDetailsByNHSNumber	AND getPatientDetailsByNHSNumberChance	THEN	getPatientDetailsByNHSNumber-v1-0Response				ELSE	next
+IF	HPR_getPatientDetailsByNHSNumber	THEN	getPatientDetailsByNHSNumber-v1-0Response_DEMOG-0001				ELSE	next
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:getPatientDetailsBySearch-v1-0
+#
+IF	HPR_getPatientDetailsBySearch	AND getPatientDetailsBySearchChance	THEN	getPatientDetailsBySearch-v1-0Response				ELSE	next
+IF	HPR_getPatientDetailsBySearch	THEN	getPatientDetailsBySearch-v1-0Response_DEMOG-0001				ELSE	next
+END RULE
+

@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.3">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Test Plan" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <intProp name="LoopController.loops">-1</intProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">10</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">0</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+      </ThreadGroup>
+      <hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="getPatientDetailsBySearch-v1-0" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&lt;soap:Envelope xmlns:soap=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; xmlns:wsa=&quot;http://www.w3.org/2005/08/addressing&quot; xmlns:itk=&quot;urn:nhs-itk:ns:201005&quot;&gt;&#xd;
+	&lt;soap:Header&gt;&#xd;
+		&lt;wsa:MessageID&gt;F9D31488-24E6-11EB-98E4-612014938745&lt;/wsa:MessageID&gt;&#xd;
+		&lt;wsa:Action&gt;urn:nhs-itk:services:201005:getPatientDetailsBySearch-v1-0&lt;/wsa:Action&gt;&#xd;
+		&lt;wsa:To&gt;http://127.0.0.1:4848/syncsoap&lt;/wsa:To&gt;&#xd;
+		&lt;wsa:From&gt;&#xd;
+			&lt;wsa:Address&gt;http://localhost:4000&lt;/wsa:Address&gt;&#xd;
+		&lt;/wsa:From&gt;&#xd;
+		&lt;wsse:Security xmlns:wsse=&quot;http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd&quot;&gt;&#xd;
+			&lt;wsu:Timestamp xmlns:wsu=&quot;http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd&quot; wsu:Id=&quot;D6CD5232-14CF-11DF-9423-1F9A910D4703&quot;&gt;&#xd;
+				&lt;wsu:Created&gt;2020-11-12T13:00:01Z&lt;/wsu:Created&gt;&#xd;
+				&lt;wsu:Expires&gt;2021-11-12T17:00:01Z&lt;/wsu:Expires&gt;&#xd;
+			&lt;/wsu:Timestamp&gt;&#xd;
+			&lt;wsse:UsernameToken&gt;&#xd;
+				&lt;wsse:Username&gt;TKS Server test&lt;/wsse:Username&gt;&#xd;
+			&lt;/wsse:UsernameToken&gt;&#xd;
+		&lt;/wsse:Security&gt;&#xd;
+	&lt;/soap:Header&gt;&#xd;
+	&lt;soap:Body&gt;&#xd;
+		&lt;itk:DistributionEnvelope xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;&#xd;
+			&lt;itk:header service=&quot;urn:nhs-itk:services:201005:getPatientDetailsBySearch-v1-0&quot; trackingid=&quot;F9D31489-24E6-11EB-98E4-612014938745&quot;&gt;&#xd;
+				&lt;itk:auditIdentity&gt;&#xd;
+					&lt;itk:id type=&quot;2.16.840.1.113883.2.1.3.2.4.18.27&quot; uri=&quot;urn:nhs-uk:identity:ods:rhm:team1:C&quot;/&gt;&#xd;
+				&lt;/itk:auditIdentity&gt;&#xd;
+				&lt;itk:manifest count=&quot;1&quot;&gt;&#xd;
+					&lt;itk:manifestitem id=&quot;uuid_808A9678-49B2-498B-AD75-1D7A0F1262D7&quot; mimetype=&quot;text/xml&quot; profileid=&quot;urn:nhs-en:profile:getPatientDetailsBySearchRequest-v1-0&quot; base64=&quot;false&quot; compressed=&quot;false&quot; encrypted=&quot;false&quot;/&gt;&#xd;
+				&lt;/itk:manifest&gt;&#xd;
+				&lt;itk:senderAddress uri=&quot;urn:nhs-uk:addressing:ods:rhm:team1:C&quot;/&gt;&#xd;
+			&lt;/itk:header&gt;&#xd;
+			&lt;itk:payloads count=&quot;1&quot;&gt;&#xd;
+				&lt;itk:payload id=&quot;uuid_808A9678-49B2-498B-AD75-1D7A0F1262D7&quot;&gt;&#xd;
+					&lt;getPatientDetailsBySearchRequest-v1-0 xmlns=&quot;urn:hl7-org:v3&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; moodCode=&quot;EVN&quot; classCode=&quot;CACT&quot;&gt;&#xd;
+						&lt;id root=&quot;16C2662F-1C6E-4F38-9B3F-5084F67CE3F2&quot;/&gt;&#xd;
+						&lt;code codeSystem=&quot;2.16.840.1.113883.2.1.3.2.4.17.284&quot; code=&quot;getPatientDetailsBySearchRequest-v1-0&quot;/&gt;&#xd;
+						&lt;queryEvent&gt;&#xd;
+							&lt;Person.DateOfBirth&gt;&#xd;
+								&lt;value value=&quot;19890101&quot;/&gt;&#xd;
+								&lt;semanticsText&gt;Person.DateOfBirth&lt;/semanticsText&gt;&#xd;
+							&lt;/Person.DateOfBirth&gt;&#xd;
+							&lt;Person.Gender&gt;&#xd;
+								&lt;value code=&quot;1&quot; codeSystem=&quot;2.16.840.1.113883.2.1.3.2.4.16.25&quot;/&gt;&#xd;
+								&lt;semanticsText&gt;Person.Gender&lt;/semanticsText&gt;&#xd;
+							&lt;/Person.Gender&gt;&#xd;
+							&lt;Person.Name&gt;&#xd;
+								&lt;value&gt;&#xd;
+									&lt;given&gt;John&lt;/given&gt;&#xd;
+									&lt;family&gt;Smith&lt;/family&gt;&#xd;
+								&lt;/value&gt;&#xd;
+								&lt;semanticsText&gt;Person.Name&lt;/semanticsText&gt;&#xd;
+							&lt;/Person.Name&gt;&#xd;
+						&lt;/queryEvent&gt;&#xd;
+					&lt;/getPatientDetailsBySearchRequest-v1-0&gt;&#xd;
+				&lt;/itk:payload&gt;&#xd;
+			&lt;/itk:payloads&gt;&#xd;
+		&lt;/itk:DistributionEnvelope&gt;&#xd;
+	&lt;/soap:Body&gt;&#xd;
+&lt;/soap:Envelope&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">443</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
+          <stringProp name="HTTPSampler.path">/syncsoap</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <KeystoreConfig guiclass="TestBeanGUI" testclass="KeystoreConfig" testname="Keystore Configuration" enabled="true">
+            <stringProp name="clientCertAliasVarName"></stringProp>
+            <stringProp name="endIndex"></stringProp>
+            <stringProp name="preload">True</stringProp>
+            <stringProp name="startIndex"></stringProp>
+          </KeystoreConfig>
+          <hashTree/>
+        </hashTree>
+        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+          <collectionProp name="HeaderManager.headers">
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">SOAPAction</stringProp>
+              <stringProp name="Header.value">urn:nhs-itk:services:201005:getPatientDetailsBySearch-v1-0</stringProp>
+            </elementProp>
+          </collectionProp>
+        </HeaderManager>
+        <hashTree/>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <intProp name="LoopController.loops">-1</intProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">10</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">0</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+      </ThreadGroup>
+      <hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="getPatientDetailsByNHSNumber-v1-0" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&lt;soap:Envelope xmlns:soap=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; xmlns:wsa=&quot;http://www.w3.org/2005/08/addressing&quot; xmlns:itk=&quot;urn:nhs-itk:ns:201005&quot;&gt;&#xd;
+	&lt;soap:Header&gt;&#xd;
+		&lt;wsa:MessageID&gt;F9D31488-24E6-11EB-98E4-612014938746&lt;/wsa:MessageID&gt;&#xd;
+		&lt;wsa:Action&gt;urn:nhs-itk:services:201005:getPatientDetailsByNHSNumber-v1-0&lt;/wsa:Action&gt;&#xd;
+		&lt;wsa:To&gt;http://127.0.0.1:4848/syncsoap&lt;/wsa:To&gt;&#xd;
+		&lt;wsa:From&gt;&#xd;
+			&lt;wsa:Address&gt;http://localhost:4000&lt;/wsa:Address&gt;&#xd;
+		&lt;/wsa:From&gt;&#xd;
+		&lt;wsse:Security xmlns:wsse=&quot;http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd&quot;&gt;&#xd;
+			&lt;wsu:Timestamp xmlns:wsu=&quot;http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd&quot; wsu:Id=&quot;D6CD5232-14CF-11DF-9423-1F9A910D4703&quot;&gt;&#xd;
+				&lt;wsu:Created&gt;2020-11-12T13:00:01Z&lt;/wsu:Created&gt;&#xd;
+				&lt;wsu:Expires&gt;2021-11-12T17:00:01Z&lt;/wsu:Expires&gt;&#xd;
+			&lt;/wsu:Timestamp&gt;&#xd;
+			&lt;wsse:UsernameToken&gt;&#xd;
+				&lt;wsse:Username&gt;TKS Server test&lt;/wsse:Username&gt;&#xd;
+			&lt;/wsse:UsernameToken&gt;&#xd;
+		&lt;/wsse:Security&gt;&#xd;
+	&lt;/soap:Header&gt;&#xd;
+	&lt;soap:Body&gt;&#xd;
+		&lt;itk:DistributionEnvelope xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;&#xd;
+			&lt;itk:header service=&quot;urn:nhs-itk:services:201005:getPatientDetailsByNHSNumber-v1-0&quot; trackingid=&quot;__INTERNAL_TRACKING_ID__&quot;&gt;&#xd;
+				&lt;itk:auditIdentity&gt;&#xd;
+					&lt;itk:id type=&quot;2.16.840.1.113883.2.1.3.2.4.18.27&quot; uri=&quot;urn:nhs-uk:identity:ods:rhm:team1:C&quot;/&gt;&#xd;
+				&lt;/itk:auditIdentity&gt;&#xd;
+				&lt;itk:manifest count=&quot;1&quot;&gt;&#xd;
+					&lt;itk:manifestitem id=&quot;uuid_808A9678-49B2-498B-AD75-1D7A0F1262D7&quot; mimetype=&quot;text/xml&quot; profileid=&quot;urn:nhs-en:profile:getPatientDetailsByNHSNumberRequest-v1-0&quot; base64=&quot;false&quot; compressed=&quot;false&quot; encrypted=&quot;false&quot;/&gt;&#xd;
+				&lt;/itk:manifest&gt;&#xd;
+				&lt;itk:senderAddress uri=&quot;urn:nhs-uk:addressing:ods:rhm:team1:C&quot;/&gt;&#xd;
+			&lt;/itk:header&gt;&#xd;
+			&lt;itk:payloads count=&quot;1&quot;&gt;&#xd;
+				&lt;itk:payload id=&quot;uuid_808A9678-49B2-498B-AD75-1D7A0F1262D7&quot;&gt;&#xd;
+					&lt;getPatientDetailsByNHSNumberRequest-v1-0 xmlns=&quot;urn:hl7-org:v3&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; moodCode=&quot;EVN&quot; classCode=&quot;CACT&quot;&gt;&#xd;
+						&lt;id root=&quot;16C2662F-1C6E-4F38-9B3F-5084F46CE3E2&quot;/&gt;&#xd;
+						&lt;code codeSystem=&quot;2.16.840.1.113883.2.1.3.2.4.17.284&quot; code=&quot;getPatientDetailsByNHSNumberRequest-v1-0&quot;/&gt;&#xd;
+						&lt;queryEvent&gt;&#xd;
+							&lt;Person.DateOfBirth&gt;&#xd;
+								&lt;value value=&quot;19890101&quot;/&gt;&#xd;
+								&lt;semanticsText&gt;Person.DateOfBirth&lt;/semanticsText&gt;&#xd;
+							&lt;/Person.DateOfBirth&gt;&#xd;
+							&lt;Person.NHSNumber&gt;&#xd;
+								&lt;value root=&quot;2.16.840.1.113883.2.1.4.1&quot; extension=&quot;9999345201&quot;/&gt;&#xd;
+								&lt;semanticsText&gt;Person.NHSNumber&lt;/semanticsText&gt;&#xd;
+							&lt;/Person.NHSNumber&gt;&#xd;
+						&lt;/queryEvent&gt;&#xd;
+					&lt;/getPatientDetailsByNHSNumberRequest-v1-0&gt;&#xd;
+				&lt;/itk:payload&gt;&#xd;
+			&lt;/itk:payloads&gt;&#xd;
+		&lt;/itk:DistributionEnvelope&gt;&#xd;
+	&lt;/soap:Body&gt;&#xd;
+&lt;/soap:Envelope&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">443</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
+          <stringProp name="HTTPSampler.path">/syncsoap</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <KeystoreConfig guiclass="TestBeanGUI" testclass="KeystoreConfig" testname="Keystore Configuration" enabled="true">
+            <stringProp name="preload">True</stringProp>
+            <stringProp name="clientCertAliasVarName"></stringProp>
+            <stringProp name="startIndex"></stringProp>
+            <stringProp name="endIndex"></stringProp>
+          </KeystoreConfig>
+          <hashTree/>
+        </hashTree>
+        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+          <collectionProp name="HeaderManager.headers">
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">SOAPAction</stringProp>
+              <stringProp name="Header.value">urn:nhs-itk:services:201005:getPatientDetailsByNHSNumber-v1-0</stringProp>
+            </elementProp>
+          </collectionProp>
+        </HeaderManager>
+        <hashTree/>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <sentBytes>true</sentBytes>
+            <url>true</url>
+            <threadCounts>true</threadCounts>
+            <idleTime>true</idleTime>
+            <connectTime>true</connectTime>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+      </ResultCollector>
+      <hashTree/>
+      <kg.apc.jmeter.vizualizers.CorrectedResultCollector guiclass="kg.apc.jmeter.vizualizers.TransactionsPerSecondGui" testclass="kg.apc.jmeter.vizualizers.CorrectedResultCollector" testname="jp@gc - Transactions per Second" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <sentBytes>true</sentBytes>
+            <url>true</url>
+            <threadCounts>true</threadCounts>
+            <idleTime>true</idleTime>
+            <connectTime>true</connectTime>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+        <longProp name="interval_grouping">1000</longProp>
+        <boolProp name="graph_aggregated">false</boolProp>
+        <stringProp name="include_sample_labels"></stringProp>
+        <stringProp name="exclude_sample_labels"></stringProp>
+        <stringProp name="start_offset"></stringProp>
+        <stringProp name="end_offset"></stringProp>
+        <boolProp name="include_checkbox_state">false</boolProp>
+        <boolProp name="exclude_checkbox_state">false</boolProp>
+      </kg.apc.jmeter.vizualizers.CorrectedResultCollector>
+      <hashTree/>
+      <kg.apc.jmeter.vizualizers.CorrectedResultCollector guiclass="kg.apc.jmeter.vizualizers.ThreadsStateOverTimeGui" testclass="kg.apc.jmeter.vizualizers.CorrectedResultCollector" testname="jp@gc - Active Threads Over Time" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <sentBytes>true</sentBytes>
+            <url>true</url>
+            <threadCounts>true</threadCounts>
+            <idleTime>true</idleTime>
+            <connectTime>true</connectTime>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+        <longProp name="interval_grouping">500</longProp>
+        <boolProp name="graph_aggregated">false</boolProp>
+        <stringProp name="include_sample_labels"></stringProp>
+        <stringProp name="exclude_sample_labels"></stringProp>
+        <stringProp name="start_offset"></stringProp>
+        <stringProp name="end_offset"></stringProp>
+        <boolProp name="include_checkbox_state">false</boolProp>
+        <boolProp name="exclude_checkbox_state">false</boolProp>
+      </kg.apc.jmeter.vizualizers.CorrectedResultCollector>
+      <hashTree/>
+      <kg.apc.jmeter.vizualizers.CorrectedResultCollector guiclass="kg.apc.jmeter.vizualizers.ResponseTimesOverTimeGui" testclass="kg.apc.jmeter.vizualizers.CorrectedResultCollector" testname="jp@gc - Response Times Over Time" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <sentBytes>true</sentBytes>
+            <url>true</url>
+            <threadCounts>true</threadCounts>
+            <idleTime>true</idleTime>
+            <connectTime>true</connectTime>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+        <longProp name="interval_grouping">500</longProp>
+        <boolProp name="graph_aggregated">false</boolProp>
+        <stringProp name="include_sample_labels"></stringProp>
+        <stringProp name="exclude_sample_labels"></stringProp>
+        <stringProp name="start_offset"></stringProp>
+        <stringProp name="end_offset"></stringProp>
+        <boolProp name="include_checkbox_state">false</boolProp>
+        <boolProp name="exclude_checkbox_state">false</boolProp>
+      </kg.apc.jmeter.vizualizers.CorrectedResultCollector>
+      <hashTree/>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
